@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+	<head>
+		<title><%= content_for(:title) || "Public Pool's Web" %></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= yield :head %>
+
+		<link rel="icon" href="/icon.png" type="image/png">
+		<link rel="icon" href="/icon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/icon.png">
+
+		<%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+		<%= javascript_importmap_tags %>
+		<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+	</head>
+
+	<body>
+		<nav class="navbar sticky-top bg-body-tertiary mb-5">
+			<div class="container-fluid px-5">
+				<a class="navbar-brand d-flex align-items-center gap-3" href="<%= root_path %>">
+					<%= image_tag "/icon.svg", alt: "Public Pool's Web icon", with: "32", height: "32" %>
+					<span>Public Pool's Web</span>
+				</a>
+
+				<div class="d-flex gap-3">
+					<a href="<%= sidekiq_web_path %>" title="Sidekiq" target="_blank">
+						<%= image_tag "/sidekiq_logo.png", class: "sidekiq-logo", alt: "Sidekiq logo", with: "32", height: "32" %>
+					</a>
+
+					<a class="btn" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">
+						<i class="bi bi-list"></i>
+					</a>
+				</div>
+			</nav>
+
+			<main class="container py-4">
+				<%= yield %>
+			</main>
+
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasMenuLabel">Settings</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+
+				<div class="offcanvas-body">
+					<%= form_for Pool.first_or_create do |form| %>
+						<div class="mb-3">
+							<%= form.label :host, class: "form-label" %>
+							<%= form.text_field :host, class: "form-control" %>
+						</div>
+
+						<div class="mb-3">
+							<%= form.label :port, class: "form-label" %>
+							<%= form.text_field :port, class: "form-control" %>
+						</div>
+
+						<%= form.submit class: "btn btn-outline-success d-block w-100" %>
+					<% end %>
+				</div>
+			</div>
+		</body>
+	</html>

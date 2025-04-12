@@ -1,0 +1,8 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  best_difficulty: 122980611.03298214
+  workers_count: 1
+  period: 10.minutes
+  host: umbrel.local
+  port: 2019

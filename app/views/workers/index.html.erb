@@ -1,0 +1,9 @@
+<table class="table table-hover">
+	<%= render partial: "workers/header" %>
+
+	<tbody>
+		<% workers.each do |worker| %>
+			<%= render worker %>
+		<% end %>
+	</tbody>
+</table>

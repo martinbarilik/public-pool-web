@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: test_user
+  best_difficulty: 122980611.03298214
+  workers_count: 1

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worker: bitaxe
+  label: "2025-03-01 15:49:29"
+  data: 836956701106
+
+two:
+  worker: bitaxe
+  label: "2025-03-01 15:00:00"
+  data: 500000000000

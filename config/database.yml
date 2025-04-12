@@ -1,0 +1,32 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV["DATABASE_URL"] %>  
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  
+production:
+  primary: &primary_production
+    <<: *default
+  cache:
+    <<: *primary_production
+    database: public_pool_web_production_cache
+    migrations_paths: db/cache_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_cache" } if ENV["DATABASE_URL"] %>
+  queue:
+    <<: *primary_production
+    database: public_pool_web_production_queue
+    migrations_paths: db/queue_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_queue" } if ENV["DATABASE_URL"] %>
+  cable:
+    <<: *primary_production
+    database: public_pool_web_production_cable
+    migrations_paths: db/cable_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_cable" } if ENV["DATABASE_URL"] %>

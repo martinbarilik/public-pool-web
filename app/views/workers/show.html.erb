@@ -1,0 +1,33 @@
+<div class="d-flex flex-column gap-5">
+	<nav class="navbar d-flex space-between align-items-center">
+		<h1><%= @worker.name %></h1>
+
+		<div class="d-flex gap-3 ms-auto align-items-center">
+			<%= link_to edit_worker_path(@worker), class: "btn btn-outline-warning" do %>
+				<i class="bi bi-gear"></i> Edit worker
+			<% end %>
+
+			<%= link_to root_path, class: "btn btn-outline-secondary" do %>
+				<i class="bi bi-arrow-left"></i> Back
+			<% end %>
+
+			<%= button_to @worker, method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to destroy #{@worker.name} worker?"} do %>
+				<i class="bi bi-trash"></i> Destroy worker
+			<% end %>
+		</div>
+	</nav>
+
+	<table class="table table-hover">
+		<%= render partial: "workers/header" %>
+
+		<tbody>
+			<%= render @worker %>
+		</tbody>
+	</table>
+
+	<section>
+		<%= turbo_stream_from dom_id(@worker, "chart_datas") %>
+
+		<%= render template: "chart_datas/index", locals: { worker_id: @worker.id } %>
+	</section>
+</div>

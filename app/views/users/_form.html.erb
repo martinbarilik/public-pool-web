@@ -1,0 +1,22 @@
+<%= form_with(model: user, id: "#{action_name}_user") do |form| %>
+	<% if user.errors.any? %>
+		<div style="color: red">
+
+		</div>
+
+		<div class="alert alert-danger" role="alert">
+			<h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+			<ul>
+				<% user.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= form.label :name, class: "form-label"  %>
+		<%= form.text_field :name, class: "form-control" %>
+	</div>
+<% end %>

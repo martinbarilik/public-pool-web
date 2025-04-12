@@ -1,0 +1,23 @@
+<%= form_with(model: worker, id: "#{action_name}_worker") do |form| %>
+	<% if worker.errors.any? %>
+		<div class="alert alert-danger" role="alert">
+			<h2><%= pluralize(worker.errors.count, "error") %> prohibited this worker from being saved:</h2>
+
+			<ul>
+				<% worker.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= form.label :name, class: "form-label"  %>
+		<%= form.text_field :name, class: "form-control" %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :user_id , class: "form-label" %>
+		<%= form.select :user_id, User.all.map { |user| [user.name, user.id] }, {}, { class: "form-select" }%>
+	</div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="accordion-item">
+	<h2 class="accordion-header">
+		<button class="ps-5 accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= user.id %>" aria-expanded="true" aria-controls="collapse<%= user.id %>">
+			<span class="d-flex justify-content-between align-items-center w-100 pe-3">
+				<span class="h5 fw-medium mb-0"><%= user.name %></span>
+				<span>Best difficulty: <%= humanize_difficulty user.workers.pluck(:best_difficulty).compact_blank.max || 0 %></span>
+			</span>
+			<a href="<%= user_path(user) %>" class="show-user" title="Show user"><i class="bi bi-gear"></i></a>
+		</button>
+	</h2>
+
+	<div id="collapse<%= user.id %>" class="accordion-collapse collapse show" data-bs-parent="#users">
+		<div class="accordion-body">
+			<%= render template: "workers/index", locals: { workers: user.workers } %>
+
+			<% if user.workers.empty? %>
+				<span class="d-block text-center">No worker found !</span>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+# config/sidekiq.yml
+
+:scheduler:
+  :schedule:
+    pull_hr_job:
+      cron: '0 * * * * *'   # Runs once per minute
+      class: PullHrJob
+    chart_data_cleanup:
+      cron: '0 0 * * *'     # Runs at midnight (00:00) every day
+      class: ChartDataCleanupWorker

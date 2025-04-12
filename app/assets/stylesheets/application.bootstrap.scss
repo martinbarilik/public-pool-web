@@ -1,0 +1,18 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+
+#users .accordion-item .accordion-header .accordion-button {
+    position: relative;
+
+    .show-user{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(100%, -50%);
+    }
+}
+
+canvas { 
+    background-color: antiquewhite;
+}

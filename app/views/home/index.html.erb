@@ -1,0 +1,97 @@
+<% if notice %>
+	<div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+		<%= notice %>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<% end %>
+
+<div data-controller="home" data-home-host-value="<%= Pool.first_or_create.host %>">
+	<section class="row mb-5" title="Pool info">
+		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+			<div class="card h-100" >
+				<div class="card-header">Pool's best difficulty</div>
+				<div class="card-body placeholder-glow" data-home-target="bestDifficulty" >
+					<span class="placeholder col-4"></span>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+			<div class="card h-100">
+				<div class="card-header">Workers count</div>
+				<div class="card-body placeholder-glow" data-home-target="workersCount">
+					<span class="placeholder col-4"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+			<div class="card h-100">
+				<div class="card-header">Network's difficulty</div>
+				<div class="card-body placeholder-glow" data-home-target="networkDifficulty">
+					<span class="placeholder col-4"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+			<div class="card h-100">
+				<div class="card-header">Network's hashrate</div>
+				<div class="card-body placeholder-glow" data-home-target="networkHashrate">
+					<span class="placeholder col-4"></span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<h3 class="fw-semibold mb-3 d-flex align-items-center space-between">
+		<span>Users</span>
+
+		<div class="d-flex gap-3 align-items-center ms-auto">
+			<%= link_to new_worker_path, class: "btn btn-outline-primary" do %>
+				<i class="bi bi-plus-lg"></i> Add worker
+			<% end %>
+
+			<%= link_to new_user_path, class: "btn btn-outline-primary" do %>
+				<i class="bi bi-plus-lg"></i> Add user
+			<% end %>
+		</div>
+	</h3>
+
+	<div class="accordion mb-5" id="users">
+		<% User.find_each do |user| %>
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="ps-5 accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= user.id %>" aria-expanded="true" aria-controls="collapse<%= user.id %>">
+						<span class="d-flex justify-content-between align-items-center w-100 pe-3">
+							<span class="h5 fw-medium mb-0"><%= user.name %></span>
+							<span>Best difficulty: <%= humanize_difficulty user.workers.pluck(:best_difficulty).compact_blank.max || 0 %></span>
+						</span>
+						<a href="<%= user_path(user) %>" class="show-user" title="Show user"><i class="bi bi-gear"></i></a>
+					</button>
+				</h2>
+
+				<div id="collapse<%= user.id %>" class="accordion-collapse collapse show" data-bs-parent="#users">
+					<div class="accordion-body">
+						<%= render template: "workers/index", locals: { workers: user.workers } %>
+
+						<% if user.workers.empty? %>
+							<span class="d-block text-center">No worker found !</span>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if User.all.empty? %>
+			<div class="text-center">
+				No user found !
+			</div>
+		<% end %>
+	</div>
+
+	<%= turbo_stream_from "chart_datas" %>
+
+	<%= render template: "chart_datas/index" %>
+</div>

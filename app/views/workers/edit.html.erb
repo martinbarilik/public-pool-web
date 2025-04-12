@@ -1,0 +1,16 @@
+<% content_for :title, "Editing worker" %>
+
+<nav class="navbar">
+	<h1>Editing worker</h1>
+
+	<div class="d-flex gap-3 ms-auto align-items-center">
+		<%= link_to "Cancel", @worker, class: "btn btn-outline-secondary" %>
+		<%= link_to "Back main page", root_url, class: "btn btn-outline-secondary" %>
+
+		<%= button_tag type: :submit, name: :commit, form: :edit_worker, class: "btn btn-outline-success" do %>
+			<i class="bi bi-plus"></i> Save
+		<% end  %>
+	</div>
+</nav>
+
+<%= render "form", worker: @worker %>

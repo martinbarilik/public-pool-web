@@ -1,0 +1,27 @@
+<div id="<%= local_assigns.key?(:worker_id) && worker_id.present? ? dom_id(Worker.find(worker_id), "chart_datas") : "chart_datas" %>" data-controller="chart" data-turbo-prefetch="false" data-chart-url-value=<%= controller_name == "chart_datas" ? url_for(action: "index") : "" %>>
+	<h3 class="fw-semibold mb-3 d-flex justify-content-between align-items-center">
+		<span>Hashrate</span>
+		<span class="fs-6 text-muted">Average: <%= humanize_hash_rate (@data&.size&.positive? ? (@data.map(&:last).reduce(:+) / @data.size) : 0).round(2) %></span>
+	</h3>
+
+	<ul class="nav nav-tabs">
+		<% %w[7.days 1.day 4.hours 1.hour].each do |period| %>
+			<li class="nav-item">
+				<a 
+					class="<%= class_names("nav-link", { "active": Pool.first.period == period }) %>"
+					data-turbo-stream="true" 
+					data-action="activate" 
+					href="<%= chart_datas_path({ **(local_assigns.key?(:worker_id) && worker_id.present? ? { worker_id: worker_id } : {}), period: "#{period}.ago" }) %>" 
+					data-chart-target="period"
+					data-home-target="anchor"
+				>
+					<%= period.gsub(".", " ") %>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+
+	<div class="card p-3 border-top-0 rounded-top-0">
+		<%= line_chart (@data || []).map { |label, value| [label, humanize_hash_rate(value)] }, suffix: ' GH/s' -%>
+	</div>
+</div>

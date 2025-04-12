@@ -1,0 +1,17 @@
+<% content_for :title, "New worker" %>
+
+<nav class="d-flex space-between">
+	<h1>New worker</h1>
+
+	<div class="d-flex align-items-center gap-3 ms-auto">
+		<%= link_to root_path, class: "btn btn-outline-secondary" do %>
+			<i class="bi bi-arrow-left"></i> Back
+		<% end %>
+
+		<%= button_tag type: :submit, name: :commit, form: :new_worker, class: "btn btn-outline-success" do %>
+			<i class="bi bi-plus"></i> Create
+		<% end  %>
+	</div>
+</nav>
+
+<%= render "form", worker: @worker %>
