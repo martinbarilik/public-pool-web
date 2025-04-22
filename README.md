@@ -1,9 +1,13 @@
-# Public Pool Web Application
+# Public Pool's Web
 
 A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring real-time updates with Hotwire and a responsive design.
 
 ![screenshot of the application](/umbrel-os/images/1.png)
 
+## TODO
+
+* <input type="checkbox"> Upgrade Rails to 8.0.2
+* <input type="checkbox"> Upgrade Ruby to 3.4.2
 
 ## Requirements
 
@@ -62,16 +66,27 @@ Run the test suite with:
 
 ## Deployment
 
-This application is configured for deployment using Kamal and Docker:
+This application is set to be deployed manually on Umbrel OS (see `umbrel-os` directory). To deploy:
 
-1. Build the Docker image:
+1. Clone the repository
    ```bash
-   docker build -t public-pool-web .
+   git clone https://github.com/martinbarilik/public-pool-web
+   cd public-pool-web
    ```
 
-2. Deploy using Kamal:
+2. rsync the application to the Umbrel OS server:
    ```bash
-   kamal deploy
+   rsync -av --exclude=".gitkeep" <path-to-your-cloned-repo-on-local-machine>/public-pool-web/umbrel-os umbrel@umbrel.local:/home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447/
+   ```
+
+3. Install the app on your umbrelOS device via terminal or app store
+   ```bash
+   umbreld client apps.install.mutate --appId public-pool-web
+   ```   
+
+4. Uninstall the app
+   ```bash
+   umbreld client apps.uninstall.mutate --appId public-pool-web
    ```
 
 ## Contributing

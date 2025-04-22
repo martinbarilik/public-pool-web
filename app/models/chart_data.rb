@@ -12,6 +12,10 @@ class ChartData < ApplicationRecord
 	TOLERANCE = 1.second
 	SUPPORTED_INTERVALS = %w[PT1H PT4H PT24H P7D].freeze
 	DEFAULT_TIMEFRAME = 1.hour
+	COLOR = '#dc3545'
+	GRID_COLOR = '#555'
+	FONT_SIZE = 12
+	OFFSET = 6.25
 
 	# Scopes
 	scope :ungrouped_data, lambda { |since, worker_id|
@@ -83,7 +87,7 @@ class ChartData < ApplicationRecord
 		end
 
 		def average_by_worker_id(data)
-			data.group_by { _1[1] }.transform_values do |values|
+			data.group_by { it[1] }.transform_values do |values|
 				numeric_values = values.map { |x| x.last.to_f }
 				numeric_values.sum / values.size
 			end.to_a

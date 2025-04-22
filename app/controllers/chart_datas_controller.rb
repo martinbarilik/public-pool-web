@@ -1,11 +1,22 @@
 # frozen_string_literal: true
 
 class ChartDatasController < ApplicationController
-	before_action :set_pool
+	before_action :set_pool, only: :index
+	before_action :update_pool_period, only: :index
 
 	def index
-		update_pool_period if period_param.present?
 		@data = fetch_chart_data
+		@average = @data&.size&.positive? ? (@data.sum(&:last) / @data.size) : 0
+		@min_max =
+			if @data&.size&.positive?
+				{
+					max: @data.max_by(&:last).last,
+					min: @data.min_by(&:last).last
+				}
+			else
+				{ max: 1000, min: 0 }
+			end
+
 		render_chart_stream
 	end
 
@@ -16,6 +27,8 @@ class ChartDatasController < ApplicationController
 	end
 
 	def update_pool_period
+		return if period_param.blank?
+
 		@pool.update!(period: sanitize_period(period_param))
 	end
 

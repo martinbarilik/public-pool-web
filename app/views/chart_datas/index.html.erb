@@ -1,7 +1,20 @@
-<div id="<%= local_assigns.key?(:worker_id) && worker_id.present? ? dom_id(Worker.find(worker_id), "chart_datas") : "chart_datas" %>" data-controller="chart" data-turbo-prefetch="false" data-chart-url-value=<%= controller_name == "chart_datas" ? url_for(action: "index") : "" %>>
+<div 
+	id="<%= local_assigns.key?(:worker_id) && worker_id.present? ? dom_id(Worker.find(worker_id), "chart_datas") : "chart_datas" %>" 
+	data-controller="chart" 
+	data-chart-offset-value="<%= ChartData::OFFSET %>"
+	data-turbo-prefetch="false"
+	data-chart-data-value="<%= @data&.to_json %>"
+	data-chart-url-value="<%= controller_name == "chart_datas" ? url_for(action: "index") : "" %>"
+	data-chart-color-value="<%= ChartData::COLOR %>"
+	data-chart-grid-color-value="<%= ChartData::GRID_COLOR %>"
+	data-chart-font-color-value="<%= ChartData::COLOR %>"
+	data-chart-font-size-value="<%= ChartData::FONT_SIZE %>"
+	data-chart-min-value="<%= @min_max[:min] if @min_max&.key?(:min) %>"
+	data-chart-max-value="<%= @min_max[:max] if @min_max&.key?(:max) %>"
+>
 	<h3 class="fw-semibold mb-3 d-flex justify-content-between align-items-center">
 		<span>Hashrate</span>
-		<span class="fs-6 text-muted">Average: <%= humanize_hash_rate (@data&.size&.positive? ? (@data.map(&:last).reduce(:+) / @data.size) : 0).round(2) %></span>
+		<span class="fs-6 text-muted">Average: <%= humanize_hash_rate @average&.round(2) %></span>
 	</h3>
 
 	<ul class="nav nav-tabs">
@@ -21,7 +34,6 @@
 		<% end %>
 	</ul>
 
-	<div class="card p-3 border-top-0 rounded-top-0">
-		<%= line_chart (@data || []).map { |label, value| [label, humanize_hash_rate(value)] }, suffix: ' GH/s' -%>
+	<div id="chart" class="card p-3 border-top-0 rounded-top-0" data-chart-target="chart">
 	</div>
 </div>
