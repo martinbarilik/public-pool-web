@@ -1,5 +1,6 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+/* Load Bootstrap and Bootstrap Icons with @use instead of @import */
+@use 'bootstrap/scss/bootstrap' as bootstrap;
+@use 'bootstrap-icons/font/bootstrap-icons' as bootstrap-icons;
 
 
 #users .accordion-item .accordion-header .accordion-button {
