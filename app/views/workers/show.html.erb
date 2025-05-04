@@ -1,18 +1,21 @@
 <div class="d-flex flex-column gap-5">
 	<nav class="navbar d-flex space-between align-items-center">
-		<h1><%= @worker.name %></h1>
+		<h1 class="d-block text-truncate w-50 mb-0"><%= @worker.name %></h1>
 
-		<div class="d-flex gap-3 ms-auto align-items-center">
-			<%= link_to edit_worker_path(@worker), class: "btn btn-outline-warning" do %>
-				<i class="bi bi-gear"></i> Edit worker
+		<div class="d-flex gap-2 gap-lg-3 align-items-center">
+			<%= link_to edit_worker_path(@worker), class: "btn btn-outline-warning", title: "Edit worker" do %>
+				<i class="bi bi-gear"></i>
+				<span class="d-none d-md-inline-block">Edit worker</span>
 			<% end %>
 
-			<%= link_to root_path, class: "btn btn-outline-secondary" do %>
-				<i class="bi bi-arrow-left"></i> Back
+			<%= link_to root_path, class: "btn btn-outline-secondary", title: "Back" do %>
+				<i class="bi bi-arrow-left"></i>
+				<span class="d-none d-md-inline-block">Back</span>
 			<% end %>
 
-			<%= button_to @worker, method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to destroy #{@worker.name} worker?"} do %>
-				<i class="bi bi-trash"></i> Destroy worker
+			<%= button_to @worker, method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "Are you sure you want to destroy #{@worker.name} worker?"}, title: "Destroy worker" do %>
+				<i class="bi bi-trash"></i>
+				<span class="d-none d-md-inline-block">Destroy worker</span>
 			<% end %>
 		</div>
 	</nav>

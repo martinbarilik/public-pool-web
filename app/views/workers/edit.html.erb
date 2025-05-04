@@ -1,14 +1,22 @@
 <% content_for :title, "Editing worker" %>
 
-<nav class="navbar">
-	<h1>Editing worker</h1>
+<nav class="navbar d-flex space-between align-items-center">
+	<h1 class="d-block text-truncate w-50 mb-0">Editing worker</h1>
 
-	<div class="d-flex gap-3 ms-auto align-items-center">
-		<%= link_to "Cancel", @worker, class: "btn btn-outline-secondary" %>
-		<%= link_to "Back main page", root_url, class: "btn btn-outline-secondary" %>
+	<div class="d-flex gap-2 gap-lg-3 align-items-center">
+		<%= link_to @worker, class: "btn btn-outline-secondary", title: "Cancel" do %>
+			<i class="bi bi-x"></i>
+			<span class="d-none d-md-inline-block">Cancel</span>
+		<% end %>
 
-		<%= button_tag type: :submit, name: :commit, form: :edit_worker, class: "btn btn-outline-success" do %>
-			<i class="bi bi-plus"></i> Save
+		<%= link_to root_url, class: "btn btn-outline-secondary", title: "Back" do %>
+			<i class="bi bi-arrow-left"></i>
+			<span class="d-none d-md-inline-block">Back</span>
+		<% end %>
+
+		<%= button_tag type: :submit, name: :commit, form: :edit_worker, class: "btn btn-outline-success", title: "Save" do %>
+			<i class="bi bi-plus"></i>
+			<span class="d-none d-md-inline-block">Save</span>
 		<% end  %>
 	</div>
 </nav>

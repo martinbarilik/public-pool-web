@@ -1,14 +1,16 @@
-<tr id="<%= dom_id(worker) %>">
+<tr id="<%= dom_id(worker) %>" class="text-center">
 	<td class="d-none"><%= turbo_stream_from worker %></td>
 
-	<td>
+	<td class="text-start">
 		<%= link_to worker_path(worker), class: "d-flex align-items-center gap-3 text-decoration-none text-danger" do %>
-			<i class="bi bi-gear"></i> <%= worker.name %>
+			<i class="bi bi-gear"></i>
+			<span class="d-block text-truncate"><%= worker.name %></span>
 		<% end  %>
 	</td>
-	<td><%= humanize_difficulty worker.best_difficulty %></td>
+
+	<td class="d-none d-md-table-cell"><%= humanize_difficulty worker.best_difficulty %></td>
 	<td><%= humanize_hash_rate worker.hash_rate %></td>
-	<td><%= worker.session_id.presence || "N/A" %></td>
-	<td title="<%= worker.start_time&.strftime("%Y-%m-%d %H:%M:%S") %>"><%= worker.start_time ? [time_ago_in_words(worker.start_time), "ago"].join(" ") : 'N/A' %></td>
-	<td title="<%= worker.last_seen&.strftime("%Y-%m-%d %H:%M:%S") %>"><%= worker.last_seen ? [time_ago_in_words(worker.last_seen), "ago"].join(" ") : 'N/A' %></td>
+	<td class="d-none d-md-table-cell"><%= worker.session_id.presence || "N/A" %></td>
+	<td class="d-none d-md-table-cell" title="<%= worker.start_time&.strftime("%Y-%m-%d %H:%M:%S") %>"><%= worker.start_time ? [time_ago_in_words(worker.start_time), "ago"].join(" ") : 'N/A' %></td>
+	<td class="d-none d-md-table-cell" title="<%= worker.last_seen&.strftime("%Y-%m-%d %H:%M:%S") %>"><%= worker.last_seen ? [time_ago_in_words(worker.last_seen), "ago"].join(" ") : 'N/A' %></td>
 </tr>

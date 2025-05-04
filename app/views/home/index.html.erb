@@ -7,7 +7,7 @@
 
 <div data-controller="home" data-home-host-value="<%= Pool.first_or_create.host %>">
 	<section class="row mb-5" title="Pool info">
-		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
 			<div class="card h-100" >
 				<div class="card-header">Pool's best difficulty</div>
 				<div class="card-body placeholder-glow" data-home-target="bestDifficulty" >
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
 			<div class="card h-100">
 				<div class="card-header">Workers count</div>
 				<div class="card-body placeholder-glow" data-home-target="workersCount">
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
 			<div class="card h-100">
 				<div class="card-header">Network's difficulty</div>
 				<div class="card-body placeholder-glow" data-home-target="networkDifficulty">
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 col-sm-6 mb-lg-0 mb-3">
+		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
 			<div class="card h-100">
 				<div class="card-header">Network's hashrate</div>
 				<div class="card-body placeholder-glow" data-home-target="networkHashrate">
@@ -63,12 +63,10 @@
 		<% User.find_each do |user| %>
 			<div class="accordion-item">
 				<h2 class="accordion-header">
-					<button class="ps-5 accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= user.id %>" aria-expanded="true" aria-controls="collapse<%= user.id %>">
-						<span class="d-flex justify-content-between align-items-center w-100 pe-3">
-							<span class="h5 fw-medium mb-0"><%= user.name %></span>
-							<span>Best difficulty: <%= humanize_difficulty user.workers.pluck(:best_difficulty).compact_blank.max || 0 %></span>
-						</span>
-						<a href="<%= user_path(user) %>" class="show-user" title="Show user"><i class="bi bi-gear"></i></a>
+					<button class="accordion-button ps-5 d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= user.id %>" aria-expanded="true" aria-controls="collapse<%= user.id %>">
+						<a href="<%= user_path(user) %>" class="show-user position-absolute" title="Show user"><i class="bi bi-gear"></i></a>
+						<span class="h5 fw-medium mb-0 text-truncate flex-grow-1"><%= user.name %></span>
+						<span class="d-none d-lg-inline-block me-3">Best difficulty: <%= humanize_difficulty user.workers.pluck(:best_difficulty).compact_blank.max || 0 %></span>
 					</button>
 				</h2>
 

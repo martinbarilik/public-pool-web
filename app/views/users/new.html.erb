@@ -1,15 +1,17 @@
 <% content_for :title, "New user" %>
 
-<nav class="d-flex space-between">
-	<h1>New user</h1>
+<nav class="navbar d-flex space-between align-items-center">
+	<h1 class="d-block text-truncate w-50 mb-0">New user</h1>
 
-	<div class="d-flex align-items-center gap-3 ms-auto">
-		<%= link_to root_path, class: "btn btn-outline-secondary" do %>
-			<i class="bi bi-arrow-left"></i> Back
+	<div class="d-flex gap-2 gap-lg-3 align-items-center">
+		<%= link_to root_path, class: "btn btn-outline-secondary", title: "Back" do %>
+			<i class="bi bi-arrow-left"></i>
+			<span class="d-none d-md-inline-block">Back</span>
 		<% end %>
 
-		<%= button_tag type: :submit, name: :commit, form: :new_user, class: "btn btn-outline-success" do %>
-			<i class="bi bi-plus"></i> Create
+		<%= button_tag type: :submit, name: :commit, form: :new_user, class: "btn btn-outline-success", title: "Create" do %>
+			<i class="bi bi-plus"></i>
+			<span class="d-none d-md-inline-block">Create</span>
 		<% end  %>
 	</div>
 </nav>
