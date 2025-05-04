@@ -2,7 +2,7 @@ manifestVersion: 1
 id: public-pool-web
 category: finance
 name: Public Pool's Web
-version: "0.0.2"
+version: "0.0.3"
 tagline: Modern web interface for managing your Public Pool's data
 description: >
   Public Pool's Web provides a sleek, user-friendly interface for managing and monitoring
@@ -12,8 +12,9 @@ description: >
   This is a hobby project!
 releaseNotes: >
   Initial release featuring:
-  - Updated chart styles
-  - Added GitHub logo
+  - fix: Improve responsive design
+  - fix: @use instead of @import
+  - build: ignore deprecations
 developer: Martin Barilík
 website: https://github.com/martinbarilik/public-pool-web
 dependencies:
