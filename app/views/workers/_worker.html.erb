@@ -2,7 +2,7 @@
 	<td class="d-none"><%= turbo_stream_from worker %></td>
 
 	<td class="text-start">
-		<%= link_to worker_path(worker), class: "d-flex align-items-center gap-3 text-decoration-none text-danger" do %>
+		<%= link_to worker_path(worker), class: "d-flex align-items-center gap-3 text-decoration-none" do %>
 			<i class="bi bi-gear"></i>
 			<span class="d-block text-truncate"><%= worker.name %></span>
 		<% end  %>
