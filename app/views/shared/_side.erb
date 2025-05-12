@@ -1,0 +1,48 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+	<div class="offcanvas-header">
+		<h3 class="offcanvas-title" id="offcanvasMenuLabel">Settings</h3>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+
+	<div class="offcanvas-body d-flex flex-column gap-5">
+		<section>
+			<h5 class="mb-3 text-center">Connection</h5>
+
+			<%= form_for Pool.first_or_create do |form| %>
+				<div class="mb-3">
+					<%= form.label :host, class: "form-label" %>
+					<%= form.text_field :host, class: "form-control" %>
+				</div>
+
+				<div class="mb-3">
+					<%= form.label :port, class: "form-label" %>
+					<%= form.text_field :port, class: "form-control" %>
+				</div>
+
+				<%= form.submit class: "btn btn-outline-success d-block w-100" %>
+			<% end %>
+		</section>
+
+		<section data-controller="theme-picker">
+			<h5 class="mb-3 text-center">Theme</h5>
+
+			<div class="d-flex gap-3 justify-content-center">
+				<input type="radio" class="btn-check" name="options" id="light" autocomplete="off" data-theme-picker-target="radioBtn" data-action="theme-picker#change">
+				<label class="btn btn-outline-secondary" for="light">Light</label>
+
+				<input type="radio" class="btn-check" name="options" id="dark" autocomplete="off" data-theme-picker-target="radioBtn" data-action="theme-picker#change">
+				<label class="btn btn-outline-secondary" for="dark">Dark</label>
+
+				<input type="radio" class="btn-check" name="options" id="black" autocomplete="off" data-theme-picker-target="radioBtn" data-action="theme-picker#change">
+				<label class="btn btn-outline-secondary" for="black">Black</label>
+
+				<input type="radio" class="btn-check" name="options" id="auto" autocomplete="off" data-theme-picker-target="radioBtn" data-action="theme-picker#change">
+				<label class="btn btn-outline-secondary" for="auto">Auto</label>
+			</div>
+		</section>
+
+		<div class="w-100 d-flex d-lg-none gap-5 justify-content-center my-5">
+			<%= render 'shared/logos' %>
+		</div>
+	</div>
+</div>

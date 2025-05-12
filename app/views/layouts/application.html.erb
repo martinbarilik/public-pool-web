@@ -21,9 +21,9 @@
 	</head>
 
 	<body>
-		<nav class="navbar sticky-top bg-body-tertiary mb-5">
+		<nav class="navbar sticky-top mb-5 border-bottom">
 			<div class="container-fluid px-2 px-lg-5">
-				<a class="navbar-brand d-flex align-items-center gap-3" href="<%= root_path %>">
+				<a href="<%= root_path %>" class="navbar-brand d-flex align-items-center gap-3">
 					<%= image_tag "/icon.svg", alt: "Public Pool's Web icon", with: "32", height: "32" %>
 					<span>Public Pool's Web</span>
 				</a>
@@ -37,37 +37,13 @@
 						<i class="bi bi-list"></i>
 					</a>
 				</div>
-			</nav>
-
-			<main class="container py-4">
-				<%= yield %>
-			</main>
-
-			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasMenuLabel">Settings</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-				</div>
-
-				<div class="offcanvas-body">
-					<%= form_for Pool.first_or_create do |form| %>
-						<div class="mb-3">
-							<%= form.label :host, class: "form-label" %>
-							<%= form.text_field :host, class: "form-control" %>
-						</div>
-
-						<div class="mb-3">
-							<%= form.label :port, class: "form-label" %>
-							<%= form.text_field :port, class: "form-control" %>
-						</div>
-
-						<%= form.submit class: "btn btn-outline-success d-block w-100" %>
-					<% end %>
-
-					<div class="w-100 d-flex d-lg-none gap-5 justify-content-center my-5">
-						<%= render 'shared/logos' %>
-					</div>
-				</div>
 			</div>
-		</body>
-	</html>
+		</nav>
+
+		<main class="container py-4">
+			<%= yield %>
+		</main>
+
+		<%= render 'shared/side' %>
+	</body>
+</html>

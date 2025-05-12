@@ -1,0 +1,43 @@
+.nav {
+    --bs-nav-tabs-link-active-color: #dc3545;
+    --bs-nav-link-color: var(--bs-secondary);
+}
+
+.text-decoration-none {
+    color: inherit;
+}
+
+.form-control:focus {
+    border-color: rgba(220, 53, 69);
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+table.table { 
+    tr {
+        td {
+            transition: color .2s ease-in-out;
+        }
+        
+        &:hover {
+            td {
+                color: rgba(220, 53, 69);
+            }
+        }
+    }
+}
+
+.accordion-button {
+    --bs-accordion-active-bg: transparent !important;
+    
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25)
+    }
+    
+    &:not(.collapsed) { 
+        color: rgb(220, 53, 69) !important;
+    }
+
+    a {
+        color: inherit !important;
+    }
+}

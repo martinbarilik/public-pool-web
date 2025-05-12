@@ -1,0 +1,14 @@
+@use 'bootstrap/scss/bootstrap' as bootstrap;
+
+[data-bs-theme="black"] {
+    /* Inherit all dark theme variables first */
+    @extend [data-bs-theme="dark"];
+    
+    /* Then override specific variables with darker values */
+    --bs-body-bg: #000;
+    --bs-body-color: #e0e0e0;
+    --bs-tertiary-bg: #121212;
+    --bs-secondary-bg: #181818;
+    --bs-emphasis-color: #f8f9fa;
+    --bs-border-color: #2a2a2a;
+}
