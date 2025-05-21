@@ -2,7 +2,7 @@ manifestVersion: 1
 id: public-pool-web
 category: finance
 name: Public Pool's Web
-version: "0.0.4"
+version: "0.0.5"
 tagline: Modern web interface for managing your Public Pool's data
 description: >
   Public Pool's Web provides a sleek, user-friendly interface for managing and monitoring

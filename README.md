@@ -7,7 +7,6 @@ A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring
 ## TODO
 
 * <input type="checkbox"> Upgrade Rails to 8.0.2
-* <input type="checkbox"> Upgrade Ruby to 3.4.2
 
 ## Requirements
 
@@ -138,7 +137,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    # Build and push for multiple architectures
    debian@debian:~$ docker buildx build --push \
     --platform linux/arm64,linux/amd64 \
-    -t martinbarilik/public-pool-web:0.0.4 \
+    -t martinbarilik/public-pool-web:0.0.5 \
     -t martinbarilik/public-pool-web:latest .
    ```
 

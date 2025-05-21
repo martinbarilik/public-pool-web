@@ -31,10 +31,10 @@ gem "solid_queue"
 gem "solid_cable"
 
 # Reduces boot times through caching; required in config/boot.rb
-# gem "bootsnap", require: false
-gem 'bootsnap', require: false,
-  git: 'https://github.com/midnight-wonderer/ruby-bootsnap.git',
-  branch: 'bug/test-forks-before-usage'
+gem "bootsnap", require: false
+# gem 'bootsnap', require: false,
+#   git: 'https://github.com/midnight-wonderer/ruby-bootsnap.git',
+#   branch: 'bug/test-forks-before-usage'
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
