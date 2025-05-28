@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.x"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -35,9 +35,6 @@ gem "bootsnap", require: false
 # gem 'bootsnap', require: false,
 #   git: 'https://github.com/midnight-wonderer/ruby-bootsnap.git',
 #   branch: 'bug/test-forks-before-usage'
-
-# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
-gem "kamal", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
@@ -81,8 +78,8 @@ end
 
 gem "chartkick", "~> 5.1"
 
-gem "sidekiq", "~> 7.3"
+gem "sidekiq", "~> 8.x"
 
-gem "sidekiq-scheduler", "~> 5.0"
+gem "sidekiq-scheduler", "~> 6.x"
 
 gem "redis", "~> 5.4"
