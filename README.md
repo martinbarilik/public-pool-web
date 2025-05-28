@@ -137,7 +137,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    # Build and push for multiple architectures
    debian@debian:~$ docker buildx build --push \
     --platform linux/arm64,linux/amd64 \
-    -t martinbarilik/public-pool-web:0.0.5 \
+    -t martinbarilik/public-pool-web:0.0.6 \
     -t martinbarilik/public-pool-web:latest .
    ```
 
