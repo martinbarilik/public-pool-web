@@ -8,6 +8,10 @@ A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring
 
 ❗❗❗ If you change host and port of your pool, you need to restart the application in umbrel os. Otherwise, sidekiq will not see them. ❗❗❗
 
+## Known Issues
+
+- 7 hour's graph sometimes doesn't render on first load
+
 ## Requirements
 
 - Ruby 3.x (see `.ruby-version` file for exact version)
