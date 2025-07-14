@@ -4,9 +4,9 @@ A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring
 
 ![screenshot of the application](/umbrel-os/images/1.png)
 
-## TODO
+# WARNING
 
-* <input type="checkbox"> Upgrade Rails to 8.0.2
+❗❗❗ If you change host and port of your pool, you need to restart the application in umbrel os. Otherwise, sidekiq will not see them. ❗❗❗
 
 ## Requirements
 
