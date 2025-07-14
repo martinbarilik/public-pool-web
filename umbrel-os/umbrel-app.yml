@@ -10,20 +10,16 @@ description: >
   real-time updates, detailed analytics, and comprehensive pool management features.
   
   This is a hobby project!
-releaseNotes: >
-  - feat: UI improvements
-  - feat: implement theme picker with light, dark and black modes
-developer: Martin Barilík
+developer: martinbarilik
 website: https://github.com/martinbarilik/public-pool-web
 dependencies:
   - public-pool
 repo: https://github.com/martinbarilik/public-pool-web
 support: https://github.com/martinbarilik/public-pool-web/discussions
-port: 2020
-gallery:
-  - 1.png
+port: 2021
+gallery: []
 path: "/"
 defaultUsername: ""
 defaultPassword: ""
-submitter: Martin Barilík
-submission: ""
+submitter: "martinbarilik"
+submission: https://github.com/getumbrel/umbrel-apps/pull/3159
