@@ -86,11 +86,6 @@ class PullHrJob
 	end
 
 	def create_chart_data(worker, hash_rate, current_time)
-		return if worker.chart_datas.exists?(
-			label: (current_time - HASH_RATE_RECORD_INTERVAL)..current_time,
-			data: hash_rate
-		)
-
 		worker.chart_datas.create!(label: current_time, data: hash_rate)
 	end
 
