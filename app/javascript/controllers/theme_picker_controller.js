@@ -40,9 +40,6 @@ export default class extends Controller {
     }
 
     this.radioBtnTargets.forEach((radioBtn) => {
-      console.log(radioBtn.id);
-      console.log(radioBtn.id === theme);
-
       radioBtn.checked = radioBtn.id === theme;
     });
   }
