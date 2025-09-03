@@ -6,12 +6,12 @@ class ChartDatasController < ApplicationController
 
 	def index
 		@data = fetch_chart_data
-		@average = @data&.size&.positive? ? (@data.sum(&:last) / @data.size) : 0
+		@average = @data&.size&.positive? ? (@data.sum(&:data) / @data.size) : 0
 		@min_max =
 			if @data&.size&.positive?
 				{
-					max: @data.max_by(&:last).last,
-					min: @data.min_by(&:last).last
+					max: @data.max_by(&:data).data,
+					min: @data.min_by(&:data).data
 				}
 			else
 				{ max: 1000, min: 0 }

@@ -3,7 +3,7 @@
 	data-controller="chart" 
 	data-chart-offset-value="<%= ChartData::OFFSET %>"
 	data-turbo-prefetch="false"
-	data-chart-data-value="<%= @data&.to_json %>"
+	data-chart-data-value="<%= @data&.map(&:attributes)&.map(&:values).as_json %>"
 	data-chart-url-value="<%= controller_name == "chart_datas" ? url_for(action: "index") : "" %>"
 	data-chart-color-value="<%= ChartData::COLOR %>"
 	data-chart-grid-color-value="<%= ChartData::GRID_COLOR %>"

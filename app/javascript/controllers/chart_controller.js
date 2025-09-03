@@ -63,7 +63,7 @@ export default class extends Controller {
             ticks: {
               color: this.colorValue,
               font: { size: this.fontSizeValue },
-              count: 4, // This will attempt to show ~10 ticks on X axis
+              count: 10, // This will attempt to show ~10 ticks on X axis
             },
           },
           y: {

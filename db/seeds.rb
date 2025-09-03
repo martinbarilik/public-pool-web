@@ -5,12 +5,14 @@
 # worker = user.workers.create!(name: 'bitaxe')
 
 # start_time = 2.hours.ago
-# loop do
-# 	break if start_time > Time.current
+start_time = 7.days.ago
+loop do
+	break if start_time > Time.current
 
-# 	worker.update!(last_seen: start_time)
-# 	ChartData.create!(worker:, label: start_time, data: rand(600_000..800_000))
+	Worker.where(id: [14]).find_each do |worker|
+		worker.update!(last_seen: start_time)
+		ChartData.create!(worker:, label: start_time, data: rand(530_000_000_000.0..1_000_000_000_000.0))
+	end
 
-# 	start_time += 1.minute
-# 	sleep(0.1)
-# end
+	start_time += 1.minute
+end

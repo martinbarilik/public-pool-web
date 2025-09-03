@@ -17,17 +17,6 @@ class ChartData < ApplicationRecord
 	FONT_SIZE = 12
 	OFFSET = 6.25
 
-	# Scopes
-	scope :ungrouped_data, lambda { |since, worker_id|
-		raise ArgumentError, 'since parameter is required' if since.nil?
-
-		result = select(:label, :worker_id, :data)
-			.where(label: since..)
-			.order(:label)
-
-		worker_id.present? ? result.where(worker_id:) : result
-	}
-
 	# Callbacks
 	after_create_commit :broadcast_chart_update
 
@@ -38,12 +27,21 @@ class ChartData < ApplicationRecord
 		# @param worker_id [Integer, nil] optional worker filter
 		# @return [Array<Array>] processed chart data points
 		def chart_data(since: DEFAULT_TIMEFRAME.ago, worker_id: nil)
-			data = fetch_and_process_data(since, worker_id)
-
 			SUPPORTED_INTERVALS.each do |duration|
 				next unless duration_matches?(since, duration)
 
-				return process_interval_data(duration, data)
+				data = "ChartData#{duration.capitalize}View"
+					.constantize
+					.select(
+							'interval_label, ' \
+							'SUM(avg_data) as data'
+						)
+					.group(:interval_label)
+					.order(:interval_label)
+
+				data = data.group(:worker_id).having(worker_id:) if worker_id.present?
+
+				return data.to_a
 			end
 
 			# Return empty array if no matching interval found
@@ -52,45 +50,12 @@ class ChartData < ApplicationRecord
 
 		private
 
-		def fetch_and_process_data(since, worker_id)
-			ungrouped_data(since, worker_id).map do |record|
-				record.attributes.values.compact_blank
-			end
-		end
-
 		def duration_matches?(since, duration)
 			(since - parse_duration(duration).ago).abs < TOLERANCE
 		end
 
-		def process_interval_data(duration, data)
-			map_average_values(group_interval(duration, data))
-		end
-
 		def parse_duration(duration)
 			ActiveSupport::Duration.parse(duration)
-		end
-
-		def group_interval(duration, data)
-			interval_size = parse_duration(duration).in_hours.minute.to_i
-
-			data.group_by do |point|
-				time, = point
-				(time.to_i / interval_size) * interval_size
-			end
-		end
-
-		def map_average_values(groups)
-			groups.map do |label, data|
-				grouped_by_worker_id = average_by_worker_id(data)
-				[Time.zone.at(label), grouped_by_worker_id.sum(&:last)]
-			end
-		end
-
-		def average_by_worker_id(data)
-			data.group_by { it[1] }.transform_values do |values|
-				numeric_values = values.map { |x| x.last.to_f }
-				numeric_values.sum / values.size
-			end.to_a
 		end
 	end
 

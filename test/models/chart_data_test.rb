@@ -5,42 +5,26 @@ require 'test_helper'
 class ChartDataTest < ActiveSupport::TestCase
 	setup do
 		@worker = workers(:bitaxe)
+		@worker2 = workers(:bitaxe2)
 		@chart_data = chart_datas(:one)
-		@time_now = Time.zone.now
 
 		# Create additional test data
 		ChartData.create!(
 			worker: @worker,
 			label: 45.minutes.ago,
-			data: 35.0
+			data: 500_000_000_000
+		)
+
+		ChartData.create!(
+			worker: @worker2,
+			label: 45.minutes.ago,
+			data: 1_000_000_000_000
 		)
 	end
 
 	test 'belongs to worker' do
 		assert_respond_to @chart_data, :worker
 		assert_instance_of Worker, @chart_data.worker
-	end
-
-	test 'ungrouped_data scope requires since parameter' do
-		assert_raises(ArgumentError) do
-			ChartData.ungrouped_data(nil, nil)
-		end
-	end
-
-	test 'ungrouped_data scope returns data since given time' do
-		since_time = 1.hour.ago
-		result = ChartData.ungrouped_data(since_time, nil)
-
-		assert_not_empty result
-		assert(result.all? { |data| data.label >= since_time })
-	end
-
-	test 'ungrouped_data scope filters by worker_id when provided' do
-		since_time = 1.hour.ago
-		result = ChartData.ungrouped_data(since_time, @worker.id)
-
-		assert_not_empty result
-		assert(result.all? { |data| data.worker_id == @worker.id })
 	end
 
 	test 'chart_data returns empty array for unsupported interval' do
@@ -51,12 +35,15 @@ class ChartDataTest < ActiveSupport::TestCase
 	test 'chart_data returns data for 1 hour interval' do
 		result = ChartData.chart_data(since: 1.hour.ago)
 		assert_instance_of Array, result
-		assert(result.all? { |point| point.is_a?(Array) && point.size == 2 })
+		assert_equal 1, result.size
+		assert(result.all? { |point| point.is_a?(ChartDataPt1hView) && point.data == 1_500_000_000_000 })
 	end
 
 	test 'chart_data filters by worker_id' do
 		result = ChartData.chart_data(since: 1.hour.ago, worker_id: @worker.id)
 		assert_instance_of Array, result
+		assert_equal 1, result.size
+		assert(result.all? { |point| point.is_a?(ChartDataPt1hView) && point.data == 500_000_000_000 })
 	end
 
 	test 'broadcasts chart update after create' do

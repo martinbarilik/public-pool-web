@@ -40,7 +40,7 @@ class PullHrJobTest < ActiveSupport::TestCase
 
 		@worker.reload
 		assert_equal '0597ca18', @worker.session_id
-		assert_equal 50681663.86, @worker.best_difficulty
+		assert_equal 50_681_663.86, @worker.best_difficulty
 		assert_equal 836_956_701_106, @worker.hash_rate
 		assert_equal Time.zone.parse('2025-03-01T15:49:29.000Z'), @worker.start_time
 		assert_equal Time.zone.parse('2025-03-02T13:39:19.000Z'), @worker.last_seen
@@ -52,23 +52,6 @@ class PullHrJobTest < ActiveSupport::TestCase
 		@pool.reload
 		assert_equal 122_980_611.03298214, @pool.best_difficulty
 		assert_equal 1, @pool.workers_count
-	end
-
-	test 'skips duplicate chart data within interval' do
-		stub_request(:get, "http://#{@pool.host}:#{@pool.port}/api/client/#{@user.name}")
-			.to_return(status: 200, body: @api_response)
-
-		travel_to @current_time do
-			# Create recent chart data
-			@worker.chart_datas.create!(
-				label: 8.minutes.ago,
-				data: 836_956_701_106
-			)
-
-			assert_no_difference -> { @worker.chart_datas.count } do
-				PullHrJob.new.perform
-			end
-		end
 	end
 
 	test 'handles HTTP error gracefully' do

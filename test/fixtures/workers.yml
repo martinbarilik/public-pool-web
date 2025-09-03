@@ -8,3 +8,12 @@ bitaxe:
   hash_rate: 836956701106
   start_time: 2025-03-01 15:49:29
   last_seen: 2025-03-02 13:39:19
+
+bitaxe2:
+  name: bitaxe2
+  user: one
+  session_id: 0597ca17
+  best_difficulty: 50681663.86
+  hash_rate: 836956701106
+  start_time: 2025-03-01 15:49:29
+  last_seen: 2025-03-02 13:39:19

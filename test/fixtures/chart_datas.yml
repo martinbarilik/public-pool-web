@@ -5,7 +5,21 @@ one:
   label: "2025-03-01 15:49:29"
   data: 836956701106
 
-two:
+three:
+  worker: bitaxe2
+  label: "2025-03-01 15:49:29"
+  data: 736956701106
+
+three:
   worker: bitaxe
   label: "2025-03-01 15:00:00"
   data: 500000000000
+
+four:
+  worker: bitaxe2
+  label: "2025-03-01 15:00:00"
+  data: 500000000000
+
+
+  
+  
