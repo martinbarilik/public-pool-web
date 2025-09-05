@@ -6,7 +6,13 @@ require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
 	resources :users
 	resources :workers, except: [:index]
-	resources :chart_datas, only: %i[index]
+
+	resources :chart_datas, only: %i[index] do
+		collection do
+			get :cleanup
+		end
+	end
+
 	resources :pools, only: [:update]
 
 	mount Sidekiq::Web => '/sidekiq'

@@ -19,7 +19,19 @@
 					<%= form.text_field :port, class: "form-control" %>
 				</div>
 
-				<%= form.submit class: "btn btn-outline-success d-block w-100" %>
+				<%= button_tag type: :submit, name: :commit, class: "btn btn-outline-success d-block w-100", title: "Update Pool" do %>
+					<i class="bi bi-plus"></i>
+					<span class="d-none d-md-inline-block">Update Pool</span>
+				<% end  %>
+			<% end %>
+		</section>
+
+		<section>
+			<h5 class="mb-3 text-center">Clean up chart data</h5>
+
+			<%= button_to cleanup_chart_datas_path, method: :get, class: "btn btn-outline-danger d-block w-100" do %>
+				<i class="bi bi-floppy2-fill"></i>
+				<span class="d-none d-md-inline-block">Clean up</span>
 			<% end %>
 		</section>
 

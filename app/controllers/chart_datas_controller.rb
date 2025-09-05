@@ -20,6 +20,12 @@ class ChartDatasController < ApplicationController
 		render_chart_stream
 	end
 
+	def cleanup
+		ChartDataCleanupWorker.new.perform
+
+		redirect_to root_path
+	end
+
 	private
 
 	def set_pool

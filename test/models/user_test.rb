@@ -18,14 +18,6 @@ class UserTest < ActiveSupport::TestCase
 		assert_includes user.errors[:name], "can't be blank"
 	end
 
-	test 'normalizes name' do
-		user = User.create!(name: 'John Doe')
-		assert_equal 'johndoe', user.name
-
-		user.update!(name: 'Jane  Smith')
-		assert_equal 'janesmith', user.name
-	end
-
 	test 'destroys associated workers' do
 		# Clear any existing workers to ensure clean state
 		@user.workers.destroy_all

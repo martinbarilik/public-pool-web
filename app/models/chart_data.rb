@@ -20,6 +20,8 @@ class ChartData < ApplicationRecord
 	# Callbacks
 	after_create_commit :broadcast_chart_update
 
+	validates :label, uniqueness: { scope: :worker_id }
+
 	# Class methods
 	class << self
 		# Processes and returns chart data based on the specified timeframe and worker

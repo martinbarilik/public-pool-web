@@ -86,7 +86,7 @@ class PullHrJob
 	end
 
 	def create_chart_data(worker, hash_rate, current_time)
-		worker.chart_datas.create!(label: current_time, data: hash_rate)
+		worker.chart_datas.create(label: current_time, data: hash_rate)
 	end
 
 	def construct_uri(user)
