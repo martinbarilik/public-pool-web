@@ -90,6 +90,6 @@ class PullHrJob
 	end
 
 	def construct_uri(user)
-		[BASE_URI, user.name].join
+		[BASE_URI, user.name.downcase.strip].join
 	end
 end
