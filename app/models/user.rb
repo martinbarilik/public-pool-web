@@ -3,7 +3,7 @@
 class User < ApplicationRecord
 	has_many :workers, dependent: :destroy
 
-	normalizes :name, with: -> { _1.tr(' ', '').downcase }
+	normalizes :name, with: -> { it.tr(' ', '') }
 
 	validates :name, presence: true
 end
