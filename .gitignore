@@ -38,3 +38,7 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# Ignore the structure.sql dump.
+/db/structure.sql
+
