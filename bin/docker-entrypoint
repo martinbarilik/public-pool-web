@@ -6,8 +6,13 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
+
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+
+  # Add this line to remove problematic structure.sql before migrations
+  rm -f db/structure.sql
+
   ./bin/rails db:prepare
 fi
 
