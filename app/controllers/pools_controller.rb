@@ -25,6 +25,6 @@ class PoolsController < ApplicationController
 	end
 
 	def pool_params
-		params.expect(pool: [:host])
+		params.expect(pool: %i[host port])
 	end
 end
