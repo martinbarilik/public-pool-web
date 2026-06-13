@@ -49,7 +49,7 @@ export default class extends Controller {
 
   parseBestDifficulty(data) {
     return this.humanizeDifficulty(
-      Math.max(data.highScores.map((score) => score.bestDifficulty))
+      Math.max(...data.highScores.map((score) => score.bestDifficulty))
     );
   }
 
