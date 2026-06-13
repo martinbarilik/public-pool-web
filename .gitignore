@@ -39,6 +39,13 @@
 
 /node_modules
 
+# Ignore bundler vendor directory.
+/vendor/bundle
+
+# Ignore .env files
+.env
+.env.*
+
 # Ignore the structure.sql dump.
 /db/structure.sql
 
