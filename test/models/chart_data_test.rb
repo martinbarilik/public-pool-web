@@ -54,7 +54,7 @@ class ChartDataTest < ActiveSupport::TestCase
 		)
 
 		# Create a pool for the broadcast
-		Pool.first_or_create # Required for the broadcast to work
+		Pool.main # Required for the broadcast to work
 
 		# The broadcast channel is based on the worker's chart_datas dom_id
 		channel = dom_id(@worker, 'chart_datas')

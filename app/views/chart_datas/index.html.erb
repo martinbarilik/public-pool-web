@@ -21,7 +21,7 @@
 		<% %w[7.days 1.day 4.hours 1.hour].each do |period| %>
 			<li class="nav-item">
 				<a 
-					class="<%= class_names("nav-link", { "active": Pool.first.period == period }) %>"
+					class="<%= class_names("nav-link", { "active": Pool.main.period == period }) %>"
 					data-turbo-stream="true" 
 					data-action="activate" 
 					href="<%= chart_datas_path({ **(local_assigns.key?(:worker_id) && worker_id.present? ? { worker_id: worker_id } : {}), period: "#{period}.ago" }) %>" 

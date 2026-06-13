@@ -6,8 +6,6 @@ require 'sidekiq-scheduler'
 class PullHrJob
 	include Sidekiq::Job
 
-	POOL = Pool.first_or_create
-	BASE_URI = "http://#{POOL.host}:#{POOL.port}/api/client/".freeze
 	REQUEST_TIMEOUT = 10 # seconds
 	# How often to record the same hash rate
 	HASH_RATE_RECORD_INTERVAL = 10.minutes
@@ -90,6 +88,13 @@ class PullHrJob
 	end
 
 	def construct_uri(user)
-		[BASE_URI, user.name].join
+		[base_uri, user.name].join
+	end
+
+	def base_uri
+		@base_uri ||= begin
+			pool = Pool.main
+			"http://#{pool.host}:#{pool.port}/api/client/"
+		end
 	end
 end

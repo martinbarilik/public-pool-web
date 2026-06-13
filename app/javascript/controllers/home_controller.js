@@ -9,7 +9,10 @@ export default class extends Controller {
     "networkDifficulty",
     "networkHashrate",
   ];
-  static values = { host: String };
+  static values = {
+    host: String,
+    port: { type: String, default: "2019" },
+  };
 
   connect() {
     this.interval = setInterval(this.refreshGraph.bind(this), 65000);
@@ -31,7 +34,7 @@ export default class extends Controller {
 
   async pullPoolData() {
     try {
-      const response = await fetch(`http://${this.hostValue}:2019/api/info`);
+      const response = await fetch(`http://${this.hostValue}:${this.portValue}/api/info`);
 
       if (!response.status) return;
 
@@ -58,7 +61,7 @@ export default class extends Controller {
 
   async pullNetworkData() {
     try {
-      const response = await fetch(`http://${this.hostValue}:2019/api/network`);
+      const response = await fetch(`http://${this.hostValue}:${this.portValue}/api/network`);
 
       if (!response.status) return;
 

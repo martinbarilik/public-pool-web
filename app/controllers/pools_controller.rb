@@ -21,7 +21,7 @@ class PoolsController < ApplicationController
 	private
 
 	def set_pool
-		@pool = Pool.first_or_create
+		@pool = Pool.main
 	end
 
 	def pool_params

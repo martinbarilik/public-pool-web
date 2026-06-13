@@ -5,7 +5,7 @@
 	</div>
 <% end %>
 
-<div data-controller="home" data-home-host-value="<%= Pool.first_or_create.host %>">
+<div data-controller="home" data-home-host-value="<%= @pool.host %>" data-home-port-value="<%= @pool.port %>">
 	<section class="row mb-5" title="Pool info">
 		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
 			<div class="card h-100" >

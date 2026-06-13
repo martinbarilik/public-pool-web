@@ -8,7 +8,7 @@
 		<section>
 			<h5 class="mb-3 text-center">Connection</h5>
 
-			<%= form_for Pool.first_or_create do |form| %>
+			<%= form_for Pool.main do |form| %>
 				<div class="mb-3">
 					<%= form.label :host, class: "form-label" %>
 					<%= form.text_field :host, class: "form-control" %>

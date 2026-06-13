@@ -69,7 +69,7 @@ class ChartData < ApplicationRecord
 			target: dom_id(worker, 'chart_datas'),
 			template: 'chart_datas/index',
 			locals: {
-				pool: Pool.first_or_create,
+				pool: Pool.main,
 				worker_id: worker.id
 			}
 		)
