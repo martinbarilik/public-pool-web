@@ -60,7 +60,10 @@ class PullHrJob
 
 	def process_user_data(user, json, current_time)
 		workers, best_difficulty, workers_count = json.values_at(:workers, :bestDifficulty, :workersCount)
-		user.update!(best_difficulty:, workers_count:)
+
+		updates = { best_difficulty: best_difficulty, workers_count: workers_count }.compact_blank
+
+		user.update!(updates) if updates.any?
 
 		workers.each do |worker_hash|
 			worker = user.workers.find_by(name: worker_hash[:name])
