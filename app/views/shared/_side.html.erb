@@ -11,15 +11,15 @@
 			<%= form_for Pool.main do |form| %>
 				<div class="mb-3">
 					<%= form.label :host, class: "form-label" %>
-					<%= form.text_field :host, class: "form-control", disabled: true %>
+					<%= form.text_field :host, class: "form-control", disabled: Rails.env.production? %>
 				</div>
 
 				<div class="mb-3">
 					<%= form.label :port, class: "form-label" %>
-					<%= form.text_field :port, class: "form-control", disabled: true %>
+					<%= form.text_field :port, class: "form-control", disabled: Rails.env.production? %>
 				</div>
 
-				<%= button_tag type: :submit, name: :commit, class: "btn btn-outline-success d-block w-100", title: "Update Pool", disabled: true do %>
+				<%= button_tag type: :submit, name: :commit, class: "btn btn-outline-success d-block w-100", title: "Update Pool", disabled: Rails.env.production? do %>
 					<i class="bi bi-plus"></i>
 					<span class="d-none d-md-inline-block">Update Pool</span>
 				<% end  %>
