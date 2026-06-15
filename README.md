@@ -79,7 +79,7 @@ This application is set to be deployed manually on Umbrel OS (see `umbrel-os` di
 
 2. rsync the application to the Umbrel OS server:
    ```bash
-   rsync -av --exclude=".gitkeep" <path-to-your-cloned-repo-on-local-machine>/public-pool-web/umbrel-os umbrel@umbrel.local:/home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447/
+   rsync -av --exclude=".gitkeep" <path-to-your-cloned-repo-on-local-machine>/umbrel-apps/public-pool-web umbrel@umbrel.local:/home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447/public-pool-web
    ```
 
 3. Install the app on your umbrelOS device via terminal or app store
