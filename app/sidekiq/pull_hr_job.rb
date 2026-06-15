@@ -60,7 +60,7 @@ class PullHrJob
 
 	def process_user_data(user, json, current_time)
 		workers, best_difficulty, workers_count = json.values_at(:workers, :bestDifficulty, :workersCount)
-		updates = { best_difficulty: best_difficulty, workers_count: workers_count }.compact_blank
+		updates = { best_difficulty:, workers_count: }.compact_blank
 
 		user.update!(updates) if updates.any?
 
