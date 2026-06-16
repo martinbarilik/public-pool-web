@@ -80,8 +80,8 @@ end
 
 gem 'chartkick', '~> 5.1'
 
-gem 'sidekiq', '~> 8.x'
+gem 'sidekiq', '~> 8.1.0'
 
-gem 'sidekiq-scheduler', '~> 6.x'
+gem 'sidekiq-scheduler', '~> 6.0.0'
 
 gem 'redis', '~> 5.4'
