@@ -33,10 +33,10 @@ class CreateChartDataPt24hView < ActiveRecord::Migration[8.0]
                     group_num
                 FROM grouped_data
                 ORDER BY interval_label, worker_id;
-SQL
+        SQL
 	end
 
-	def down
+    def down
 		execute 'DROP VIEW IF EXISTS chart_data_pt24h_views;'
 	end
 end
