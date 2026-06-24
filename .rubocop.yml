@@ -3,7 +3,7 @@
 inherit_gem:
   rubocop-shopify: rubocop.yml
 
-require:
+plugins:
   - rubocop-capybara
   - rubocop-performance
   - rubocop-rails
@@ -154,7 +154,7 @@ AllCops:
   # or gems.rb file, RuboCop reads the final value from the lock file.) If the
   # Ruby version is still unresolved, RuboCop will use the oldest officially
   # supported Ruby version (currently Ruby 2.7).
-  TargetRubyVersion: ~
+  TargetRubyVersion: 3.4
   # Determines if a notification for extension libraries should be shown when
   # rubocop is run. Keys are the name of the extension, and values are an array
   # of gems in the Gemfile that the extension is suggested for, if not already
@@ -654,7 +654,7 @@ Layout/EmptyLinesAroundBeginBody:
 Layout/EmptyLinesAroundBlockBody:
   Description: "Keeps track of empty lines around block bodies."
   StyleGuide: "#empty-lines-around-bodies"
-  Enabled: true
+  Enabled: false
   VersionAdded: "0.49"
   EnforcedStyle: no_empty_lines
   SupportedStyles:
@@ -1087,7 +1087,6 @@ Layout/LineLength:
   AllowedPatterns: []
   Exclude:
     - "db/seeds/**/*.rb"
-    - "db/seeds.rb"
 
 Layout/MultilineArrayBraceLayout:
   Description: >-
@@ -1838,7 +1837,6 @@ Lint/EmptyClass:
 Lint/EmptyConditionalBody:
   Description: "Checks for the presence of `if`, `elsif` and `unless` branches without a body."
   Enabled: true
-  SafeAutoCorrect: false
   AllowComments: true
   VersionAdded: "0.89"
   VersionChanged: "1.34"
@@ -2192,7 +2190,6 @@ Lint/RedundantRegexpQuantifiers:
 Lint/RedundantRequireStatement:
   Description: "Checks for unnecessary `require` statement."
   Enabled: true
-  SafeAutoCorrect: false
   VersionAdded: "0.76"
   VersionChanged: "1.57"
 
@@ -2923,7 +2920,7 @@ Naming/MethodParameterName:
   # Forbidden names that will register an offense
   ForbiddenNames: []
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Description: "Check the names of predicate methods."
   StyleGuide: "#bool-methods-qmark"
   Enabled: true

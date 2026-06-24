@@ -56,7 +56,7 @@ end
 group :development do
 	# Use console on exceptions pages [https://github.com/rails/web-console]
 	gem 'htmlbeautifier'
-	gem 'rubocop', require: false
+	gem 'rubocop', '~> 1.81.7', require: false # newer version has bug, indentation doesnt work
 	gem 'rubocop-capybara', require: false
 	gem 'rubocop-packaging', require: false
 	gem 'rubocop-performance', require: false
