@@ -1,0 +1,37 @@
+<section class="row mb-5" title="Pool info" id="<%= dom_id(pool) %>">
+    <div class="col-lg-3 col-6 mb-lg-0 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-header">Pool's Best Difficulty</div>
+            <div class="card-body placeholder-glow" data-home-target="bestDifficulty" >
+                <%= humanize_difficulty(pool.best_difficulty) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6 mb-lg-0 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-header">Block Height</div>
+            <div class="card-body placeholder-glow" data-home-target="blockHeight">
+                <%= pool.block_height.to_i %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6 mb-lg-0 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-header">Network Difficulty</div>
+            <div class="card-body placeholder-glow" data-home-target="networkDifficulty">
+                <%= humanize_difficulty(pool.network_difficulty) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6 mb-lg-0 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-header">Network Hash Rate</div>
+            <div class="card-body placeholder-glow" data-home-target="networkHashrate">
+                <%= humanize_hash_rate(pool.network_hash) %>
+            </div>
+        </div>
+    </div>
+</section>

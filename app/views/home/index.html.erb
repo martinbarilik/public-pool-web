@@ -5,45 +5,11 @@
 	</div>
 <% end %>
 
-<div data-controller="home" data-home-host-value="<%= @pool.host %>" data-home-port-value="<%= @pool.port %>">
-	<section class="row mb-5" title="Pool info">
-		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
-			<div class="card h-100" >
-				<div class="card-header">Pool's best difficulty</div>
-				<div class="card-body placeholder-glow" data-home-target="bestDifficulty" >
-					<span class="placeholder col-4"></span>
 
-				</div>
-			</div>
-		</div>
+<div data-controller="home">
+	<%= turbo_stream_from dom_id(@pool) %>
 
-		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
-			<div class="card h-100">
-				<div class="card-header">Workers count</div>
-				<div class="card-body placeholder-glow" data-home-target="workersCount">
-					<span class="placeholder col-4"></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
-			<div class="card h-100">
-				<div class="card-header">Network's difficulty</div>
-				<div class="card-body placeholder-glow" data-home-target="networkDifficulty">
-					<span class="placeholder col-4"></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-lg-3 col-6 mb-lg-0 mb-3">
-			<div class="card h-100">
-				<div class="card-header">Network's hashrate</div>
-				<div class="card-body placeholder-glow" data-home-target="networkHashrate">
-					<span class="placeholder col-4"></span>
-				</div>
-			</div>
-		</div>
-	</section>
+	<%= render 'pools/info', pool: @pool %>
 
 	<h3 class="fw-semibold mb-3 d-flex align-items-center space-between">
 		<span>Users</span>
