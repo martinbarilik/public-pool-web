@@ -22,24 +22,28 @@ A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring
 ## Development Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd public-pool-web
    ```
 
 2. **Install dependencies**
+
    ```bash
    bundle install
    yarn install
    ```
 
 3. **Environment configuration**
+
    ```bash
    cp .env.example .env.development
    # Edit .env.development with your local settings
    ```
 
 4. **Database setup**
+
    ```bash
    bin/rails db:prepare
    ```
@@ -63,6 +67,7 @@ A modern web application built with Ruby on Rails 8.0 and Bootstrap 5, featuring
 ## Testing
 
 Run the test suite with:
+
 ```bash
    bin/rails test
 ```
@@ -72,24 +77,37 @@ Run the test suite with:
 This application is set to be deployed manually on Umbrel OS (see `umbrel-os` directory). To deploy:
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/martinbarilik/public-pool-web
    cd public-pool-web
    ```
 
 2. rsync the application to the Umbrel OS server:
+
    ```bash
-   rsync -av --exclude=".gitkeep" <path-to-your-cloned-repo-on-local-machine>/umbrel-apps/public-pool-web umbrel@umbrel.local:/home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447/public-pool-web
+   rsync -av --exclude=".gitkeep" <path-to-your-cloned-repo-on-local-machine>/umbrel-apps/public-pool-web umbrel@umbrel.local:/home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447/
    ```
 
 3. Install the app on your umbrelOS device via terminal or app store
+
    ```bash
    umbreld client apps.install.mutate --appId public-pool-web
-   ```   
+   ```
 
 4. Uninstall the app
+
    ```bash
    umbreld client apps.uninstall.mutate --appId public-pool-web
+   ```
+
+5. Rollback app's data from registry
+
+   ```bash
+   cd /home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447
+   git fetch origin
+   git checkout origin/master -- public-pool-web
+   git clean -fd public-pool-web
    ```
 
 ## Contributing
@@ -104,7 +122,6 @@ This application is set to be deployed manually on Umbrel OS (see `umbrel-os` di
 
 This project is licensed under the MIT License - see the LICENSE file for details
 
-
 ## Docker Development
 
 ### Additional Requirements
@@ -115,22 +132,26 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ### Useful Commands
 
 1. Run locally from docker-compose.yml
+
    ```bash
    debian@debian:~$ cd umbrel-os
    debian@debian:~$ source exports.sh && docker compose up
    ```
 
 2. **Access PostgreSQL Database**
+
    ```bash
    debian@debian:~$ docker exec -it <container-id> psql -U <user> -d <dbname>
    ```
 
 3. **Access Rails Console**
+
    ```bash
    debian@debian:~$ docker exec -it <container-id> ./bin/rails c
    ```
 
 4. **Build and Push Multi-Platform Image**
+
    ```bash
    # Login to Docker Hub
    debian@debian:~$ docker login
@@ -141,7 +162,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    # Build and push for multiple architectures
    debian@debian:~$ docker buildx build --push \
     --platform linux/arm64,linux/amd64 \
-    -t martinbarilik/public-pool-web:0.0.7 \
+    -t martinbarilik/public-pool-web:0.2.0 \
     -t martinbarilik/public-pool-web:latest .
    ```
 
