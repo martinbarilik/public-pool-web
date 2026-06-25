@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'net/http'
 require 'sidekiq-scheduler'
 
 class PullHrJob
 	include Sidekiq::Job
 
-	REQUEST_TIMEOUT = 10 # seconds
 	# How often to record the same hash rate
 	HASH_RATE_RECORD_INTERVAL = 10.minutes
 
@@ -32,9 +30,10 @@ class PullHrJob
 	# @raise [StandardError] If API request fails or response is invalid
 	def perform
 		current_time = Time.zone.now
+		api = PublicPoolApi.new
 
 		User.includes(:workers).find_each do |user|
-			json = fetch_user_data(user)
+			json = fetch_user_data(api, user)
 			process_user_data(user, json, current_time)
 		rescue StandardError => e
 			Rails.logger.error("Failed to process user #{user.id}: #{e.message}")
@@ -45,17 +44,10 @@ class PullHrJob
 
 	private
 
-	def fetch_user_data(user)
-		uri = URI(construct_uri(user))
-		response = Net::HTTP.start(uri.host, uri.port, read_timeout: REQUEST_TIMEOUT) do |http|
-			http.get(uri.request_uri)
-		end
-
-		raise "API request failed with status #{response.code}" unless response.is_a?(Net::HTTPSuccess)
-
-		JSON.parse(response.body, symbolize_names: true)
-	rescue JSON::ParserError => e
-		raise "Invalid JSON response: #{e.message}"
+	def fetch_user_data(api, user)
+		api.client(user.name)
+	rescue PublicPoolApi::RequestError, PublicPoolApi::JsonParseError => e
+		raise "API request failed: #{e.message}"
 	end
 
 	def process_user_data(user, json, current_time)
@@ -87,16 +79,5 @@ class PullHrJob
 
 	def create_chart_data(worker, hash_rate, current_time)
 		worker.chart_datas.create(label: current_time, data: hash_rate)
-	end
-
-	def construct_uri(user)
-		[base_uri, user.name].join
-	end
-
-	def base_uri
-		@base_uri ||= begin
-			pool = Pool.main
-			"http://#{pool.host}:#{pool.port}/api/client/"
-		end
 	end
 end
