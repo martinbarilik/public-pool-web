@@ -101,15 +101,6 @@ This application is set to be deployed manually on Umbrel OS (see `umbrel-os` di
    umbreld client apps.uninstall.mutate --appId public-pool-web
    ```
 
-5. Rollback app's data from registry
-
-   ```bash
-   cd /home/umbrel/umbrel/app-stores/getumbrel-umbrel-apps-github-53f74447
-   git fetch origin
-   git checkout origin/master -- public-pool-web
-   git clean -fd public-pool-web
-   ```
-
 ## Contributing
 
 1. Fork the repository
