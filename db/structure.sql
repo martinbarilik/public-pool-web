@@ -1,4 +1,4 @@
-\restrict GeQNv74Ffb7ZUYNxytk1rDe5DDPwuLSZavuHNursrrCIbITuhFznOv8mM1ZYEbZ
+\restrict jbidW2BizWNQfxx71T4cK036q0gYeQeDSIRgkJbv9POWXChbZ4PKimLpIEiIrWK
 
 -- Dumped from database version 18.4 (Debian 18.4-1.pgdg13+1)
 -- Dumped by pg_dump version 18.4 (Debian 18.4-1.pgdg13+1)
@@ -192,9 +192,8 @@ CREATE TABLE public.pools (
     id bigint NOT NULL,
     best_difficulty numeric,
     period character varying DEFAULT '1.hour'::character varying NOT NULL,
-    workers_count integer DEFAULT 0 NOT NULL,
-    host character varying NOT NULL,
-    port character varying NOT NULL,
+    host character varying DEFAULT '127.0.0.1'::character varying NOT NULL,
+    port character varying DEFAULT '2019'::character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     network_difficulty numeric DEFAULT 0.0 NOT NULL,
@@ -411,11 +410,14 @@ ALTER TABLE ONLY public.chart_datas
 -- PostgreSQL database dump complete
 --
 
-\unrestrict GeQNv74Ffb7ZUYNxytk1rDe5DDPwuLSZavuHNursrrCIbITuhFznOv8mM1ZYEbZ
+\unrestrict jbidW2BizWNQfxx71T4cK036q0gYeQeDSIRgkJbv9POWXChbZ4PKimLpIEiIrWK
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260625061355'),
+('20260625060115'),
+('20260624193113'),
 ('20260615191138'),
 ('20260612000001'),
 ('20250831140000'),
