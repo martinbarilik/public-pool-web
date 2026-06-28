@@ -51,6 +51,7 @@ group :development, :test do
 	# Static analysis for security vulnerabilities [https://brakemanscanner.org/]
 	gem 'brakeman', require: false
 	gem 'dotenv', '~> 3.1'
+	gem 'minitest', '~> 5.25'
 end
 
 group :development do
