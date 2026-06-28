@@ -2,9 +2,12 @@
 
 :scheduler:
   :schedule:
+    pull_pool_info_job:
+      cron: '*/10 * * * *' # Runs every 10 minutes
+      class: PullPoolInfoJob
     pull_hr_job:
-      cron: '0 * * * * *'   # Runs once per minute
+      cron: '0 * * * * *' # Runs once per minute
       class: PullHrJob
     chart_data_cleanup:
-      cron: '0 0 * * *'     # Runs at midnight (00:00) every day
+      cron: '0 0 * * *' # Runs at midnight (00:00) every day
       class: ChartDataCleanupWorker
