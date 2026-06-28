@@ -28,7 +28,12 @@
 					<span>Public Pool's Web</span>
 				</a>
 
-				<div class="d-flex gap-3">
+				<div class="d-flex gap-3 align-items-center">
+					<%= link_to donate_path, class: "btn btn-sm btn-outline-warning" do %>
+						<span>&#8383;</span>
+						<span class="d-none d-md-inline">Donate</span>
+					<% end %>
+
 					<div class="d-none d-lg-flex gap-3">
 						<%= render 'shared/logos' %>
 					</div>

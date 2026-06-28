@@ -10,3 +10,4 @@ pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin 'bootstrap', to: 'bootstrap.min.js'
 pin 'chartkick', to: 'chartkick.js'
 pin 'Chart.bundle', to: 'Chart.bundle.js'
+pin 'qrcode-generator' # @2.0.4

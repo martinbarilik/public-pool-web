@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
 	resources :pools, only: [:update]
 
+	get 'donate', to: 'donations#show'
+
 	mount Sidekiq::Web => '/sidekiq'
 
 	# Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
