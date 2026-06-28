@@ -47,11 +47,9 @@ class PullHrJobTest < ActiveSupport::TestCase
 
 		@user.reload
 		assert_equal 122_980_611.03298214, @user.best_difficulty
-		assert_equal 1, @user.workers_count
 
 		@pool.reload
 		assert_equal 122_980_611.03298214, @pool.best_difficulty
-		assert_equal 1, @pool.workers_count
 	end
 
 	test 'handles HTTP error gracefully' do

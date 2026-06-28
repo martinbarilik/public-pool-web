@@ -1,4 +1,4 @@
-\restrict jbidW2BizWNQfxx71T4cK036q0gYeQeDSIRgkJbv9POWXChbZ4PKimLpIEiIrWK
+\restrict WWClgTRkJHXgc3zcP75BAi4bwaskMinJU4BDfIJgZO7jGdedyS6lUhHU0IiNlrq
 
 -- Dumped from database version 18.4 (Debian 18.4-1.pgdg13+1)
 -- Dumped by pg_dump version 18.4 (Debian 18.4-1.pgdg13+1)
@@ -238,7 +238,6 @@ CREATE TABLE public.users (
     id bigint NOT NULL,
     name character varying,
     best_difficulty numeric DEFAULT 0.0 NOT NULL,
-    workers_count integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -410,11 +409,12 @@ ALTER TABLE ONLY public.chart_datas
 -- PostgreSQL database dump complete
 --
 
-\unrestrict jbidW2BizWNQfxx71T4cK036q0gYeQeDSIRgkJbv9POWXChbZ4PKimLpIEiIrWK
+\unrestrict WWClgTRkJHXgc3zcP75BAi4bwaskMinJU4BDfIJgZO7jGdedyS6lUhHU0IiNlrq
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260628082645'),
 ('20260625061355'),
 ('20260625060115'),
 ('20260624193113'),
