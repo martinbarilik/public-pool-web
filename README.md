@@ -166,3 +166,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    ```
 
 Note: Replace `<container-id>` with your actual Docker container ID. You can find it using `docker ps`.
+
+### Donate
+
+![Donate](public/donate.png)
