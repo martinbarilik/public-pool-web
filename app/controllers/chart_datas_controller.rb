@@ -23,7 +23,7 @@ class ChartDatasController < ApplicationController
 	def cleanup
 		ChartDataCleanupWorker.new.perform
 
-		redirect_to root_path
+		redirect_to root_path, notice: 'Chart data cleaned up successfully'
 	end
 
 	private

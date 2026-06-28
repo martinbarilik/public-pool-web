@@ -29,7 +29,7 @@
 		<section>
 			<h5 class="mb-3 text-center">Clean up chart data</h5>
 
-			<%= button_to cleanup_chart_datas_path, method: :get, class: "btn btn-outline-danger d-block w-100" do %>
+			<%= button_to cleanup_chart_datas_path, method: :get, class: "btn btn-outline-danger d-block w-100", data: { turbo_confirm: "Are you sure you want to clean up chart data?" } do %>
 				<i class="bi bi-floppy2-fill"></i>
 				<span class="d-none d-md-inline-block">Clean up</span>
 			<% end %>
