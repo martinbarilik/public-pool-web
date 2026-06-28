@@ -72,6 +72,12 @@ Run the test suite with:
    bin/rails test
 ```
 
+# Run this as postgres user if you get PG::InsufficientPrivilege error
+
+```
+ALTER USER myuser WITH SUPERUSER;
+```
+
 ## Deployment
 
 This application is set to be deployed manually on Umbrel OS (see `umbrel-os` directory). To deploy:
