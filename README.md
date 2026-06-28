@@ -15,7 +15,7 @@ A modern web application built with Ruby on Rails 8.1.3 and Bootstrap 5, featuri
 
 ## Requirements
 
-- Ruby 3.4.9 (see `.mise.toml` file for exact version)
+- Ruby 4.0.5 (see `.mise.toml` file for exact version)
 - Node.js (see `.node-version` file for exact version)
 - PostgreSQL
 - Yarn package manager

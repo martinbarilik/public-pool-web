@@ -152,7 +152,9 @@ GEM
     marcel (1.2.1)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.6)
+      drb (~> 2.0)
+      prism (~> 1.5)
     mocha (3.1.0)
       ruby2_keywords (>= 0.0.5)
     msgpack (1.8.3)
@@ -397,7 +399,6 @@ DEPENDENCIES
   htmlbeautifier
   importmap-rails
   jbuilder
-  minitest (~> 5.25)
   mocha
   pg (~> 1.1)
   propshaft
