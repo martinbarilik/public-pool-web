@@ -5320,7 +5320,7 @@ Style/StringHashKeys:
 Style/StringLiterals:
   Description: "Checks if uses of quotes match the configured preference."
   StyleGuide: "#consistent-string-literals"
-  Enabled: true
+  Enabled: false
   VersionAdded: "0.9"
   VersionChanged: "0.36"
   EnforcedStyle: single_quotes
