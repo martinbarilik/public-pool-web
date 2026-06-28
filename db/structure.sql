@@ -1,8 +1,3 @@
-\restrict WWClgTRkJHXgc3zcP75BAi4bwaskMinJU4BDfIJgZO7jGdedyS6lUhHU0IiNlrq
-
--- Dumped from database version 18.4 (Debian 18.4-1.pgdg13+1)
--- Dumped by pg_dump version 18.4 (Debian 18.4-1.pgdg13+1)
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -409,11 +404,14 @@ ALTER TABLE ONLY public.chart_datas
 -- PostgreSQL database dump complete
 --
 
-\unrestrict WWClgTRkJHXgc3zcP75BAi4bwaskMinJU4BDfIJgZO7jGdedyS6lUhHU0IiNlrq
-
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260628133961'),
+('20260628133960'),
+('20260628133959'),
+('20260628131721'),
+('20260628131720'),
 ('20260628082645'),
 ('20260625061355'),
 ('20260625060115'),
