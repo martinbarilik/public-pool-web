@@ -8,6 +8,9 @@
     pull_hr_job:
       cron: '0 * * * * *' # Runs once per minute
       class: PullHrJob
+    pull_worker_info_job:
+      cron: '0 * * * * *' # Runs once per minute
+      class: PullWorkerInfoJob
     chart_data_cleanup:
       cron: '0 0 * * *' # Runs at midnight (00:00) every day
       class: ChartDataCleanupWorker

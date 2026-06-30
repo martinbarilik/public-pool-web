@@ -66,6 +66,6 @@ class WorkersController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
 	def worker_params
-		params.expect(worker: %i[name user_id])
+		params.expect(worker: %i[name user_id worker_ip])
 	end
 end

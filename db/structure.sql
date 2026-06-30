@@ -271,7 +271,9 @@ CREATE TABLE public.workers (
     start_time timestamp(6) without time zone,
     last_seen timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    temperature double precision DEFAULT 0.0,
+    worker_ip character varying
 );
 
 
@@ -407,6 +409,7 @@ ALTER TABLE ONLY public.chart_datas
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260630123624'),
 ('20260628133961'),
 ('20260628133960'),
 ('20260628133959'),

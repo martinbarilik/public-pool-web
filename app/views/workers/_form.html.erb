@@ -20,4 +20,13 @@
 		<%= form.label :user_id , class: "form-label" %>
 		<%= form.select :user_id, User.all.map { |user| [user.name, user.id] }, {}, { class: "form-select" }%>
 	</div>
+
+	<div class="mb-3">
+		<%= form.label :worker_ip , class: "form-label" %>
+
+		<div class="input-group">
+			<span class="input-group-text">http://</span>
+			<%= form.text_field :worker_ip, class: "form-control", placeholder: "127.0.0.1" %>
+		</div>
+	</div>
 <% end %>
