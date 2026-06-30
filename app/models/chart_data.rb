@@ -69,9 +69,14 @@ class ChartData < ApplicationRecord
 			target: dom_id(worker, 'chart_datas'),
 			template: 'chart_datas/index',
 			locals: {
-				pool: Pool.main,
 				worker_id: worker.id
 			}
+		)
+
+		broadcast_replace_to(
+			'chart_datas',
+			target: 'chart_datas',
+			template: 'chart_datas/index'
 		)
 	end
 end
