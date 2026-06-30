@@ -14,7 +14,7 @@
 			<span class="d-none d-md-inline-block">Back</span>
 		<% end %>
 
-		<%= button_tag type: :submit, name: :commit, form: :edit_worker, class: "btn btn-outline-success", title: "Save" do %>
+		<%= button_tag type: :submit, name: :commit, form: :"#{action_name}_worker", class: "btn btn-outline-success", title: "Save" do %>
 			<i class="bi bi-plus"></i>
 			<span class="d-none d-md-inline-block">Save</span>
 		<% end  %>
