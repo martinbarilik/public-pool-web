@@ -58,7 +58,7 @@ A modern web application built with Ruby on Rails 8.1.3 and Bootstrap 5, featuri
 
 ## Key Features
 
-- Modern Rails 8.0 architecture
+- Modern Rails 8.1 architecture
 - Real-time updates using Hotwire (Turbo and Stimulus)
 - Bootstrap 5 for responsive UI
 - PostgreSQL database
