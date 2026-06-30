@@ -2,7 +2,7 @@
 
 class UpdatePools < ActiveRecord::Migration[8.0]
 	def change
-		pool = Pool.first
+		pool = Pool.main
 
 		if (host = ENV.fetch('PUBLIC_POOL_HOST', nil)).present?
 			pool.update!(host:)
