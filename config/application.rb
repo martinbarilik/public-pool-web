@@ -28,5 +28,8 @@ module PublicPoolWeb
 
 		# Include database views in schema dumps
 		config.active_record.schema_format = :sql
+
+		# disable variant processing
+		config.active_storage.variant_processor = :disabled
 	end
 end
