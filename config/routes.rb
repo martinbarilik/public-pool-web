@@ -17,9 +17,9 @@ Rails.application.routes.draw do
 
 	get 'donate', to: 'donations#show'
 
-	# Restrict the Sidekiq dashboard to an IP allowlist (comma-separated, defaults to localhost).
-	sidekiq_allowed_ips = ENV.fetch('SIDEKIQ_WEB_ALLOWED_IPS', '127.0.0.1,::1').split(',').map(&:strip)
-	mount Sidekiq::Web => '/sidekiq', constraints: ->(request) { sidekiq_allowed_ips.include?(request.remote_ip) }
+	# The Sidekiq dashboard is exposed without an in-app constraint; it relies on
+	# the authentication in front of the app (e.g. the StartOS proxy's basic auth).
+	mount Sidekiq::Web => '/sidekiq'
 
 	# Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
 	# Can be used by load balancers and uptime monitors to verify that the app is live.
