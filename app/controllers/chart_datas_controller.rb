@@ -35,7 +35,8 @@ class ChartDatasController < ApplicationController
 	def update_pool_period
 		return if period_param.blank?
 
-		@pool.update!(period: sanitize_period(period_param))
+		period = sanitize_period(period_param)
+		@pool.update!(period:) if Pool.valid_period?(period)
 	end
 
 	def period_param
