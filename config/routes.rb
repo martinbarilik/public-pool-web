@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 	resources :chart_datas, only: %i[index] do
 		collection do
-			get :cleanup
+			delete :cleanup
 		end
 	end
 
