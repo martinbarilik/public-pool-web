@@ -142,7 +142,7 @@ class PublicPoolApi
 				location = response['location']
 				raise RequestError, 'Redirect without location header' unless location
 
-				get(location, limit: limit - 1)
+				get(redirect_path(location, uri), limit: limit - 1)
 			else
 				raise RequestError, "HTTP #{response.code}: #{response.message}"
 		end
@@ -152,9 +152,22 @@ class PublicPoolApi
 		raise RequestError, "Connection failed: #{e.message}"
 	end
 
-	def build_uri(path)
-		return URI.parse(path) if path.start_with?('http')
+	# Only follow redirects that stay on the pool origin; redirects to
+	# other hosts are rejected to prevent the pool endpoint being used
+	# to reach arbitrary internal services.
+	def redirect_path(location, original_uri)
+		redirect_uri = original_uri.merge(location)
 
-		URI.parse("http://#{@pool.host}:#{@pool.port}/api/#{path}")
+		unless redirect_uri.is_a?(URI::HTTP) && redirect_uri.host == original_uri.host && redirect_uri.port == original_uri.port
+			raise RequestError, 'Refusing cross-origin redirect'
+		end
+
+		redirect_uri.request_uri
+	end
+
+	def build_uri(path)
+		base = URI.parse("http://#{@pool.host}:#{@pool.port}")
+
+		base.merge(path.start_with?('/') ? path : "/api/#{path}")
 	end
 end
