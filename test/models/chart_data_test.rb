@@ -9,15 +9,16 @@ class ChartDataTest < ActiveSupport::TestCase
 		@chart_data = chart_datas(:one)
 
 		# Create additional test data
+		label = 45.minutes.ago
 		ChartData.create!(
 			worker: @worker,
-			label: 45.minutes.ago,
+			label:,
 			data: 500_000_000_000
 		)
 
 		ChartData.create!(
 			worker: @worker2,
-			label: 45.minutes.ago,
+			label:,
 			data: 1_000_000_000_000
 		)
 	end
