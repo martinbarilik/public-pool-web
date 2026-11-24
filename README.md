@@ -5,11 +5,11 @@ A modern web application built with Ruby on Rails 8.1.3 and Bootstrap 5, featuri
 ![screenshot of the application](https://getumbrel.github.io/umbrel-apps-gallery/public-pool-web/3.jpg)
 
 <div style="display: flex; gap: 20px; align-items: center;">
-   <div style="background: white; padding: 10px; border-radius: 5px;">
-   <img src="https://p.kagi.com/proxy/S9-Transparent-Dark_1200x630.png?c=XXO6cLpMCEjQi_t7yL_7GZidgNrn8ZVfiaDUPNHwKMUUwwBUU5LxJ2omkQFFKjUzy3nHq1rG1NCPnmZ1m53TWpxKuRBw08VskjBiXhQek5dNyWNNIOXhWEh7-kz8EuzX" alt="Start9 Logo" height="80" style="margin-right: 20px;">
+   <div style="background: black; padding: 10px; border-radius: 5px;">
+   <img src="https://p.kagi.com/proxy/logo.png?c=odngWKgETCSH00hv9T-0s6WFaw0Px9ZW364sOzwshTV0fhRgUOuX8byXFnW_rNbNZQ6BZLVcjVbqzyunjwpYNg%3D%3D" alt="Start9 Logo" height="80" style="margin-right: 20px;">
    </div>
-   <div style="background: white; padding: 10px; border-radius: 5px;">
-   <img src="https://camo.githubusercontent.com/40fc559585a384cee34b0e5688256ed6057b78186e9d7f44976e7dface90f5a0/68747470733a2f2f617070732e756d6272656c2e636f6d2f62616467652d6c696768742e737667" alt="Umbrel Logo" height="80">
+   <div style="background: black; padding: 10px; border-radius: 5px;">
+   <img src="https://camo.githubusercontent.com/1ca952e9a5d8d8b97867b4c4c544a7f16c817c800dd04c531f5539e4e54ed63d/68747470733a2f2f617070732e756d6272656c2e636f6d2f62616467652d6461726b2e737667" alt="Umbrel Logo" height="80">
    </div>
 </div>
 
