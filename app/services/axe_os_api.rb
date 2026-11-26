@@ -52,6 +52,9 @@ class AxeOsApi
 				location = response['location']
 				raise RequestError, 'Redirect without location header' unless location
 
+				redirect_uri = URI.parse(location)
+				raise RequestError, 'Cross-origin redirect refused' unless redirect_uri.host == @worker.worker_ip
+
 				get(location, limit: limit - 1)
 			else
 				raise RequestError, "HTTP #{response.code}: #{response.message}"
@@ -63,7 +66,7 @@ class AxeOsApi
 	end
 
 	def build_uri(path)
-		return URI.parse(path) if path.start_with?('http')
+		return URI.parse(path) if path.start_with?('http://', 'https://')
 
 		URI.parse("http://#{@worker.worker_ip}/api/system/#{path}")
 	end
